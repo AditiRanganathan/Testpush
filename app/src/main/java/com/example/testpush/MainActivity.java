@@ -70,8 +70,9 @@ public class MainActivity extends AppCompatActivity implements CTInboxListener, 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         clevertapDefaultInstance = CleverTapAPI.getDefaultInstance(getApplicationContext());
-        CleverTapAPI cleverTapDefaultInstance = CleverTapAPI.getDefaultInstance(this);
-        cleverTapDefaultInstance.enablePersonalization();
+        //CleverTapAPI cleverTapDefaultInstance = CleverTapAPI.getDefaultInstance(this);
+        clevertapDefaultInstance.enablePersonalization();
+        CleverTapAPI.setDebugLevel(CleverTapAPI.LogLevel.VERBOSE);
 //        String name = (String) clevertapDefaultInstance.profile.getProperty("Name");
 //        if (name != null) {
 //            // Assuming you have a TextView named customerTypeTextView in your layout
@@ -80,11 +81,11 @@ public class MainActivity extends AppCompatActivity implements CTInboxListener, 
 //        }
 
 
-        if (cleverTapDefaultInstance != null) {
+        if (clevertapDefaultInstance != null) {
             //Set the Notification Inbox Listener
-            cleverTapDefaultInstance.setCTNotificationInboxListener(this);
+            clevertapDefaultInstance.setCTNotificationInboxListener(this);
             //Initialize the inbox and wait for callbacks on overridden methods
-            cleverTapDefaultInstance.initializeInbox();
+            clevertapDefaultInstance.initializeInbox();
             clevertapDefaultInstance.showAppInbox();
         }
         // each of the below mentioned fields are optional
@@ -299,7 +300,7 @@ public class MainActivity extends AppCompatActivity implements CTInboxListener, 
                 profileUpdate.put("DOB", new Date());         // Date of Birth. Set the Date object to the appropriate value first
 // optional fields. controls whether the user will be sent email, push etc.
                 profileUpdate.put("MSG-email", false);        // Disable email notifications
-                profileUpdate.put("MSG-push", true);          // Enable push notifications
+                profileUpdate.put("MSG-push", false);          // Enable push notifications
                 profileUpdate.put("MSG-sms", false);          // Disable SMS notifications
                 profileUpdate.put("MSG-whatsapp", true);      // Enable WhatsApp notifications
 //                ArrayList<String> stuff = new ArrayList<String>();
@@ -478,6 +479,7 @@ public class MainActivity extends AppCompatActivity implements CTInboxListener, 
 
 
     }
+
 
     private void fetchInboxMessageCountAndUpdateUI() {
         // Make a network request to fetch inbox message count from backend

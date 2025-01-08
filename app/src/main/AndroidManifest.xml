@@ -34,10 +34,13 @@
 
         <meta-data
             android:name="CLEVERTAP_ACCOUNT_ID"
-            android:value="TEST-65W-KK5-9W7Z"/>
+            android:value="TEST-WRK-6Z8-9Z7Z"/>
         <meta-data
             android:name="CLEVERTAP_TOKEN"
-            android:value="TEST-533-056"/>
+            android:value="TEST-b16-320"/>
+        <meta-data
+            android:name="CLEVERTAP_IDENTIFIER"
+            android:value="Identity"/>
 
         <service
             android:name="com.clevertap.android.sdk.pushnotification.fcm.FcmMessageListenerService"
